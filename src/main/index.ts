@@ -11,21 +11,47 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
+    minWidth: 485,
+    minHeight: 665,
+    backgroundColor: '#2f3241',
     show: false,
     autoHideMenuBar: true,
-    ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
-    }
+    },
+
+    // Platform-specific
+    ...(process.platform === 'win32' ? {
+      frame: false,
+      titleBarStyle: 'hidden',
+      titleBarOverlay: {
+        color: '#2f3241',
+        symbolColor: '#86a5b1'
+      }
+    } : {}),
+    ...(process.platform === 'darwin' ? {
+      frame: false,
+      titleBarStyle: 'hidden',
+      titleBarOverlay: true
+    } : {}),
+    ...(process.platform === 'linux' ? {
+      icon: icon
+    } : {})
   });
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show();
   });
 
+  mainWindow.on('closed', () => {
+    mainWindow = null;
+  });
+
   mainWindow.webContents.setWindowOpenHandler((details) => {
-    shell.openExternal(details.url);
+    shell.openExternal(details.url).catch((err) => {
+      console.log(`Unable to open "${details.url}": ${err.message}`);
+    });
     return { action: 'deny' };
   });
 

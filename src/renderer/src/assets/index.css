@@ -1,3 +1,6 @@
+:root {
+  --window-titlebar-height: 30px;
+}
 body {
   display: flex;
   flex-direction: column;
@@ -37,12 +40,30 @@ a:hover {
   border-bottom: 1px solid;
 }
 
+.titlebar {
+  background-color: #2f3241;
+  display: block;
+  font-size: 12px;
+  height: var(--window-titlebar-height);
+  padding: 4px 0;
+  position: fixed;
+  user-select: none;
+  width: 100%;
+  z-index: 1;
+  -webkit-app-region: drag;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
 .container {
   flex: 1;
   display: flex;
   flex-direction: column;
   max-width: 840px;
-  margin: 0 auto;
+  margin: var(--window-titlebar-height) auto 0;
   padding: 15px 30px 0 30px;
 }
 
