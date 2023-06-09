@@ -1,11 +1,24 @@
-import { app, shell, BrowserWindow } from 'electron';
+import { app, shell, BrowserWindow, Tray } from 'electron';
 import { join } from 'path';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
 
 // Reference resource
 import icon from '../../resources/icon.png?asset';
+import * as path from 'path';
 
-let mainWindow;
+let tray, mainWindow;
+
+const createTray = () => {
+  if (process.platform === 'win32') {
+    tray = new Tray(path.join(__dirname, '../../resources/tray.ico'));
+  } else if (process.platform === 'darwin') {
+    tray = new Tray(path.join(__dirname, '../../resources/trayTemplate.png'));
+  } else if (process.platform === 'linux') {
+    tray = new Tray(path.join(__dirname, '../../resources/tray.png'));
+  }
+
+  tray?.setToolTip('Electron');
+};
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
@@ -13,7 +26,6 @@ const createWindow = () => {
     height: 670,
     minWidth: 485,
     minHeight: 665,
-    backgroundColor: '#2f3241',
     show: false,
     autoHideMenuBar: true,
     webPreferences: {
@@ -40,11 +52,11 @@ const createWindow = () => {
     } : {})
   });
 
-  mainWindow.on('ready-to-show', () => {
+  mainWindow.once('ready-to-show', () => {
     mainWindow.show();
   });
 
-  mainWindow.on('closed', () => {
+  mainWindow.once('closed', () => {
     mainWindow = null;
   });
 
@@ -74,6 +86,7 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window);
   });
 
+  createTray();
   createWindow();
 
   // macOS relaunch from dock
