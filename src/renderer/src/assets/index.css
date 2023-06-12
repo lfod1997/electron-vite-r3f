@@ -64,7 +64,7 @@ a:hover {
   flex-direction: column;
   max-width: 840px;
   margin: var(--window-titlebar-height) auto 0;
-  padding: 15px 30px 0 30px;
+  padding: 15px 10px 0 10px;
 }
 
 .versions {

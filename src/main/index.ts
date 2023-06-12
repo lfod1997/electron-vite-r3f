@@ -8,6 +8,8 @@ import * as path from 'path';
 
 let tray, mainWindow;
 
+// @ts-ignore
+// noinspection JSUnusedLocalSymbols
 const createTray = () => {
   if (process.platform === 'win32') {
     tray = new Tray(path.join(__dirname, '../../resources/tray.ico'));
@@ -86,7 +88,7 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window);
   });
 
-  createTray();
+  // createTray();
   createWindow();
 
   // macOS relaunch from dock
