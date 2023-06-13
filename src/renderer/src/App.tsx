@@ -1,10 +1,24 @@
 import Versions from './components/Versions';
 import { useRef } from 'react';
 import { Mesh } from 'three';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { Canvas, useFrame, extend, useThree, Node } from '@react-three/fiber';
+
+// Use `extend` utility function to generate corresponding JSX tag
+extend({ OrbitControls });
+
+// Inject into `ThreeElements` interface to support static typing in JSX
+declare module '@react-three/fiber' {
+  // noinspection JSUnusedGlobalSymbols
+  interface ThreeElements {
+    orbitControls: Node<OrbitControls, typeof OrbitControls>;
+  }
+}
 
 const Scene = () => {
   const meshRef = useRef<Mesh>(null);
+  const { camera, gl: { domElement } } = useThree();
+
   useFrame((_, dt) => {
     if (meshRef.current) {
       meshRef.current.rotation.y += dt * 0.5;
@@ -12,12 +26,17 @@ const Scene = () => {
   });
 
   return (
-    <group>
-      <mesh ref={meshRef}>
-        <torusKnotGeometry args={[1.5, 0.5, 64, 16]} />
-        <meshBasicMaterial color={'cyan'} wireframe={true} />
-      </mesh>
-    </group>
+    <>
+      <orbitControls args={[camera, domElement]} />
+      <directionalLight intensity={0.4} />
+      <ambientLight intensity={0.5} />
+      <group>
+        <mesh ref={meshRef}>
+          <torusKnotGeometry args={[1.5, 0.5, 96, 16]} />
+          <meshStandardMaterial color={'cyan'} wireframe={true} />
+        </mesh>
+      </group>
+    </>
   );
 };
 
