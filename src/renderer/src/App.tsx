@@ -32,7 +32,7 @@ const Scene = () => {
       <ambientLight intensity={0.5} />
       <group>
         <mesh ref={meshRef}>
-          <torusKnotGeometry args={[1.5, 0.5, 96, 16]} />
+          <torusKnotGeometry args={[1.625, 0.5, 96, 16]} />
           <meshStandardMaterial color={'cyan'} wireframe={true} />
         </mesh>
       </group>
@@ -43,13 +43,13 @@ const Scene = () => {
 const App = () => {
   return (
     <>
-      <header className='titlebar'>
+      <header className='titlebar draggable'>
         <div className='centered'>
           <p>Simple Electron App</p>
         </div>
       </header>
       <main className='container'>
-        <h2 className='hero-text'>Three.js</h2>
+        <h2 className='hero-text draggable'>Three.js</h2>
         <div style={{ height: '80vh' }}>
           <Canvas>
             <Scene />

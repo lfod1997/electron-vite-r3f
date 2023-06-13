@@ -1,11 +1,14 @@
 :root {
+  --window-titlebar-height: 31px;
+
   color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     --color-background-main: #d4e8ef;
-    --color-background-secondary: #c2f5ff;
+    --color-background-secondary: #e8f5fa;
+    --color-border: #c3dce3;
     --color-text-main: #26282e;
     --color-text-secondary: #2f3241;
     --color-text-accent: #3a507a;
@@ -17,6 +20,7 @@
   :root {
     --color-background-main: #2f3241;
     --color-background-secondary: #26282e;
+    --color-border: #24242d;
     --color-text-main: #86a5b1;
     --color-text-secondary: #d4e8ef;
     --color-text-accent: #9feaf9;
@@ -25,12 +29,9 @@
 }
 
 body {
-  --window-titlebar-height: 30px;
-
   display: flex;
   flex-direction: column;
-  font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Open Sans', sans-serif;
+  font-family: Roboto, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', sans-serif;
   color: var(--color-text-main);
   background-color: var(--color-background-main);
 }
@@ -45,12 +46,15 @@ ul {
 }
 
 code {
-  font-weight: 600;
-  padding: 3px 5px;
-  border-radius: 2px;
+  display: inline-block;
   background-color: var(--color-background-secondary);
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  font-weight: 600;
   font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
-  font-size: 85%;
+  font-size: 90%;
+  padding: 3px 5px;
+  user-select: text;
 }
 
 a {
@@ -67,27 +71,27 @@ a:hover {
 
 .titlebar {
   background-color: var(--color-background-main);
-  display: block;
+  display: flex;
   font-size: 12px;
   height: var(--window-titlebar-height);
-  padding: 4px 0;
+  padding: 0;
   position: fixed;
-  user-select: none;
   width: 100%;
   z-index: 1;
-  -webkit-app-region: drag;
 }
 
 .centered {
+  align-items: center;
+  align-self: center;
   display: flex;
+  flex-grow: 1;
   justify-content: center;
+  justify-self: center;
 }
 
 .container {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  max-width: 840px;
   margin: var(--window-titlebar-height) auto 0;
   padding: 15px 10px 0 10px;
 }
@@ -110,6 +114,7 @@ a:hover {
   padding: 0 20px;
   font-size: 13px;
   opacity: 0.8;
+  user-select: none;
 }
 
 .versions li:last-child {
@@ -232,4 +237,9 @@ a:hover {
   .features .feature-item {
     width: 100%;
   }
+}
+
+.draggable {
+  user-select: none;
+  -webkit-app-region: drag !important;
 }

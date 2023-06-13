@@ -5,10 +5,10 @@ const Versions = () => {
 
   return (
     <ul className='versions'>
-      <li className='electron-version'>Electron v{versions.electron}</li>
-      <li className='chrome-version'>Chromium v{versions.chrome}</li>
-      <li className='node-version'>Node v{versions.node}</li>
-      <li className='v8-version'>V8 v{versions.v8}</li>
+      <li>Electron <code>{versions.electron}</code></li>
+      <li>Chromium <code>{versions.chrome}</code></li>
+      <li>Node <code>{versions.node}</code></li>
+      <li>V8 <code>{versions.v8}</code></li>
     </ul>
   );
 };
