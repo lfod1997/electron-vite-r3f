@@ -1,6 +1,7 @@
 import { app, shell, BrowserWindow, Tray } from 'electron';
 import { join } from 'path';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
+import { nativeTheme } from 'electron';
 
 // Reference resource
 import icon from '../../resources/icon.png?asset';
@@ -40,8 +41,8 @@ const createWindow = () => {
       frame: false,
       titleBarStyle: 'hidden',
       titleBarOverlay: {
-        color: '#2f3241',
-        symbolColor: '#86a5b1'
+        color: nativeTheme.shouldUseDarkColors ? '#2f3241' : '#d4e8ef',
+        symbolColor: nativeTheme.shouldUseDarkColors ? '#86a5b1' : '#26282e'
       }
     } : {}),
     ...(process.platform === 'darwin' ? {

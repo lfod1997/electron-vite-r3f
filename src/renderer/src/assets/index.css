@@ -1,13 +1,38 @@
 :root {
-  --window-titlebar-height: 30px;
+  color-scheme: light dark;
 }
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-background-main: #d4e8ef;
+    --color-background-secondary: #c2f5ff;
+    --color-text-main: #26282e;
+    --color-text-secondary: #2f3241;
+    --color-text-accent: #3a507a;
+    --color-text-headings: #213034;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background-main: #2f3241;
+    --color-background-secondary: #26282e;
+    --color-text-main: #86a5b1;
+    --color-text-secondary: #d4e8ef;
+    --color-text-accent: #9feaf9;
+    --color-text-headings: #c2f5ff;
+  }
+}
+
 body {
+  --window-titlebar-height: 30px;
+
   display: flex;
   flex-direction: column;
   font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Open Sans', sans-serif;
-  color: #86a5b1;
-  background-color: #2f3241;
+  'Ubuntu', 'Cantarell', 'Open Sans', sans-serif;
+  color: var(--color-text-main);
+  background-color: var(--color-background-main);
 }
 
 * {
@@ -23,13 +48,13 @@ code {
   font-weight: 600;
   padding: 3px 5px;
   border-radius: 2px;
-  background-color: #26282e;
+  background-color: var(--color-background-secondary);
   font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
   font-size: 85%;
 }
 
 a {
-  color: #9feaf9;
+  color: var(--color-text-accent);
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
@@ -41,7 +66,7 @@ a:hover {
 }
 
 .titlebar {
-  background-color: #2f3241;
+  background-color: var(--color-background-main);
   display: block;
   font-size: 12px;
   height: var(--window-titlebar-height);
@@ -73,7 +98,7 @@ a:hover {
   clear: both;
   overflow: hidden;
   font-family: 'Menlo', 'Lucida Console', monospace;
-  color: #c2f5ff;
+  color: var(--color-text-headings);
   line-height: 1;
   transition: all 0.3s;
 }
@@ -108,7 +133,7 @@ a:hover {
 
 .hero-text {
   font-weight: 400;
-  color: #c2f5ff;
+  color: var(--color-text-headings);
   text-align: center;
   margin-top: -0.5rem;
   margin-bottom: 10px;
@@ -174,7 +199,7 @@ a:hover {
 .features .title {
   font-size: 17px;
   font-weight: 500;
-  color: #c2f5ff;
+  color: var(--color-text-headings);
   line-height: 22px;
   overflow: hidden;
   text-overflow: ellipsis;
