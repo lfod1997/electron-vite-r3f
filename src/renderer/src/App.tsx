@@ -48,15 +48,17 @@ const App = () => {
           <p>Simple Electron App</p>
         </div>
       </header>
-      <main className='container'>
+      <main>
         <h2 className='hero-text draggable'>Three.js</h2>
-        <div style={{ height: '80vh' }}>
-          <Canvas>
-            <Scene />
-          </Canvas>
-        </div>
-        <Versions></Versions>
+        <Canvas>
+          <Scene />
+        </Canvas>
       </main>
+      <footer className='footbar'>
+        <div className='centered'>
+          <Versions />
+        </div>
+      </footer>
     </>
   );
 };
