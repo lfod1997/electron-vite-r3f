@@ -1,34 +1,31 @@
-# electron-vite-demo
+# electron-vite-r3f
 
-An Electron application with React and TypeScript
-
-## Recommended IDE Setup
-
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+Some-boilerplate demo project to start with Electron + Vite + React Three Fiber.
 
 ## Project Setup
 
 ### Install
 
-```bash
-$ npm install
+```console
+npm install
 ```
 
-### Development
+### Development Launch (HMR)
 
-```bash
-$ npm run dev
+```console
+npm run dev
+```
+
+### Preview Launch (no HMR)
+
+```console
+npm run start
 ```
 
 ### Build
 
-```bash
-# For windows
-$ npm run build:win
-
-# For macOS
-$ npm run build:mac
-
-# For Linux
-$ npm run build:linux
+```console
+npm run build:win
+npm run build:mac
+npm run build:linux
 ```
